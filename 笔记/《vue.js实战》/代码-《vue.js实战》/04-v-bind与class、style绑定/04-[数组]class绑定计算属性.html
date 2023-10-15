@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .boxSize {
+            width: 100px;
+            height: 100px;
+            background-color: greenyellow;
+        }
+        .bgColorBlue {
+            background-color: skyblue;
+        }
+        .bgColorNormal {
+            background-color: greenyellow;
+        }
+        .red {
+            color: red;
+        }
+        .blue {
+            color: pink;
+        }
+        .shape {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <button @click="changeClass">动态切换class属性</button>
+        <div :class="classes">123</div>
+    </div>
+    <script src="https://unpkg.com/vue@2.7.14/dist/vue.min.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                color: 'red',
+                isSkyBlue: false
+            },
+            methods: {
+                changeClass() {
+                    this.color = this.color === 'red' ? 'blue' : 'red';
+                    this.isSkyBlue = !this.isSkyBlue;
+                }
+            },
+            computed: {
+                classes: function() {
+                    return [
+                        'boxSize',                          // 1. 原始字符串表示class名；
+                        this.color,                         // 2. 通过data赋值来表示class名；
+                        {                                   // 3. 通过对象来表示多个class名；
+                            bgColorBlue: this.isSkyBlue       // 3.1 通过对象属性值true、false来表示class名；
+                        }
+                    ]
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        单个单选按钮：
+        <input type="radio" :checked="picked" @click="picked = !picked" id="ra">
+        <label for='ra'>是否选中:</label>{{picked}}<br>
+        多个互斥单选按钮：
+        <input type="radio" v-model="radio2" value="html" id="html">
+        <label for="html">html</label>
+        <input type="radio" v-model="radio2" value="css" id="css">
+        <label for="css">css</label>
+        <input type="radio" v-model="radio2" value="js" id='js'>
+        <label for="js">js</label><br>
+        选中的是：{{radio2}}<br>
+        绑定动态值；
+        <input type="radio" v-model="radio3" :value="text3" id="text3">
+        <label for="text3">单选按钮</label>
+        <p>radio3: {{radio3}}</p>
+        <p>text3: {{text3}}</p>
+    </div>
+    <script src="https://unpkg.com/vue@2.7.14/dist/vue.min.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                picked: false,
+                radio2: '',
+                radio3: 'banana',
+                text3: 'apple'
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <select v-model="selected1">
+            <option>html</option>
+            <option>css</option>
+            <option value="javascript">js</option>
+        </select>
+        选中的是：{{selected1}}
+        <hr>
+        <select v-model="selected2" multiple>
+            <option>a</option>
+            <option>b</option>
+            <option value="c">c</option>
+        </select>
+        选中的是：{{selected2}}
+        <hr>
+        <select v-model="selected3" multiple>
+            <option v-for="item in books" :value="item.value">{{item.name}}</option>
+        </select>
+        选中的是：{{selected3}}
+    </div>
+    <script src="https://unpkg.com/vue@2.7.14/dist/vue.min.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                selected1: 'javascript',
+                selected2: ['a','b'],
+                selected3: [],
+                books: [
+                    {
+                        name: 'HTML',
+                        value: 'html'
+                    },
+                    {
+                        name: 'CSS',
+                        value: 'css'
+                    },
+                    {
+                        name: 'JavaScript',
+                        value: 'js'
+                    }
+                ]
+            }
+        })
+    </script>
+</body>
+</html>

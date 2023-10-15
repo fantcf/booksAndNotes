@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        单个复选框：
+        <input type="checkbox" v-model="checkbox1" value="a" id="a">
+        <label for="a">a</label>
+        ———— checkbox1: {{checkbox1}}
+        <hr>
+        多个复选框：
+        <input type="checkbox" v-model="checkbox2" value="b" id="b">
+        <label for="b">b</label>
+        <input type="checkbox" v-model="checkbox2" value="c" id="c">
+        <label for="c">c</label>
+        <input type="checkbox" v-model="checkbox2" value="d" id="d">
+        <label for="d">d</label>
+        ———— checkbox2: {{checkbox2}}
+    </div>
+    <script src="https://unpkg.com/vue@2.7.14/dist/vue.min.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                checkbox1: false,
+                checkbox2: []
+            }
+        })
+    </script>
+</body>
+</html>

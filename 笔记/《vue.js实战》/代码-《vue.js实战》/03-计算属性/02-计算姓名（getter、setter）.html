@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算姓名-setter、getter</title>
+</head>
+<body>
+    <div id="app">
+        姓：{{lastname}}<br/>
+        名：{{firstname}}<br/>
+        姓名：{{name}}<br/>
+        姓名（可编辑）： <input type="text" v-model="fullname">{{fullname}}
+    </div>
+    <script src="https://unpkg.com/vue@2.7.14/dist/vue.min.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                lastname: 'tian',
+                firstname: 'chaofan',
+            },
+            mounted() {
+                // this.fullname = 'a b'
+            },
+            computed: {
+                name: function() {
+                    return this.lastname + ' ' + this.firstname
+                },
+                fullname: {
+                    get: function() {
+                        return this.lastname + ' ' + this.firstname;
+                    },
+                    set: function(val) {    // 注意：set函数只有一个参数：修改后的值；
+                        console.log('修改后的fullname：', val);
+                        [this.lastname, this.firstname] = val.split(' ');
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

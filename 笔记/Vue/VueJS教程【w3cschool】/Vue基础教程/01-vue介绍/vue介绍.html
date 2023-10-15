@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        {{message}}
+    </div>
+    <div id="app2">
+        <span v-bind:title="title">
+            鼠标悬停，看到标题
+        </span>
+    </div>
+    <div id="app3">
+        <span v-if="seen">判断if</span>
+    </div>
+    <div id="app4">
+        <ol>
+            <li v-for="item in todolist">
+                {{item.title}}
+            </li>
+        </ol>
+    </div>
+    <div id="app5">
+        <p>{{message}}</p>
+        <button @click="reverseMessage">反转消息</button>
+    </div>
+    <div id="app6">
+        <p>{{message}}</p>
+        <input v-model="message">
+    </div>
+    <div id="app7">
+        <ol>
+            <todo-item></todo-item>
+        </ol>
+    </div>
+    <div id="app8">
+        <ul>
+            <todo-list :todolist="todolist"></todo-list>
+        </ul>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello vue!'
+        }
+    })
+    var app2 = new Vue({
+        el: '#app2',
+        data: {
+            title: '这是标题' + new Date().toLocaleString()
+        }
+    })
+    var app3 = new Vue({
+        el: '#app3',
+        data: {
+            seen: true
+        }
+    })
+    const todolist = [
+        {title: 'a'},
+        {title: 'b'},
+        {title: 'c'},
+    ]
+    var app4 = new Vue({
+        el: '#app4',
+        data: {
+            todolist: todolist
+        }
+    })
+    var app5 = new Vue({
+        el: '#app5',
+        data: {
+            message: 'hello world'
+        },
+        methods: {
+            reverseMessage() {
+                this.message = this.message.split('').reverse().join('')
+            }
+        }
+    })
+    var app6 = new Vue({
+        el: '#app6',
+        data: {
+            message: 'abc'
+        }
+    })
+    Vue.component('todo-item', {
+        template: '<li>This is a todo</li>'
+    })
+    var app7 = new Vue({
+        el: '#app7'
+    })
+    Vue.component('todo-list', {
+        props: ['todolist'],
+        template: '<div><li v-for="item in todolist">{{item.title}}</li></div>'
+    })
+    var app8 = new Vue({
+        el: '#app8',
+        data: {
+            todolist:todolist
+        }
+    })
+</script>
+</html>
